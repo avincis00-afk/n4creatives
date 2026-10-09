@@ -654,6 +654,39 @@ body[data-view="contact"] .cta::after{
   .nav-links{margin:0;justify-content:center}
   .nav-in>.btn{justify-self:end}
 }
+
+/* CTA v2: one framed card, copy left, direct contact list right */
+.cta{background:var(--ink)}
+.cta-card{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:clamp(36px,5vw,80px);align-items:center;
+  padding:clamp(32px,5.2vw,80px);border:1px solid var(--line);border-radius:8px;
+  background:radial-gradient(70% 90% at 0% 0%,color-mix(in srgb,var(--bronze) 11%,transparent),transparent 65%),
+             radial-gradient(60% 70% at 100% 100%,color-mix(in srgb,var(--teal-deep) 9%,transparent),transparent 70%),var(--ink-2)}
+.cta-card::before{content:"";position:absolute;inset:-4px;z-index:-1;pointer-events:none;
+  background-image:radial-gradient(circle,color-mix(in srgb,var(--teal-pale) 11%,transparent) .9px,transparent 1.3px);background-size:6px 6px;filter:blur(.9px);
+  -webkit-mask-image:linear-gradient(135deg,#000 0%,rgba(0,0,0,.3) 35%,transparent 60%);mask-image:linear-gradient(135deg,#000 0%,rgba(0,0,0,.3) 35%,transparent 60%)}
+.cta-mark{position:absolute;z-index:-1;right:-70px;bottom:-60px;width:min(520px,60%);color:var(--bronze);opacity:.07;transform:rotate(-12deg);pointer-events:none}
+.cta-main{min-width:0}
+.cta-card h2{font-size:clamp(46px,5.4vw,86px);line-height:.88;text-wrap:balance}
+.cta-card .lede{margin-top:24px;max-width:46ch}
+.cta-card .actions{margin-top:32px}
+.cta-links{list-style:none;margin:0;padding:0;display:grid;gap:10px;min-width:0}
+.cl{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:14px;padding:14px 18px 14px 14px;border:1px solid var(--line);border-radius:6px;
+  background:color-mix(in srgb,var(--ink) 55%,transparent);text-decoration:none;color:var(--bone);transition:border-color .25s,transform .25s,background .25s}
+a.cl:hover{border-color:var(--bronze);background:color-mix(in srgb,var(--bronze) 7%,var(--ink));transform:translateX(4px)}
+.cl-i{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid color-mix(in srgb,var(--bronze) 45%,transparent);color:var(--bronze)}
+.cl-i svg{width:20px;height:20px}
+.cl-t{display:grid;gap:5px;min-width:0}
+.cl-t small{font:500 10.5px/1.2 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.cl-t b{font-weight:500;font-size:17px;line-height:1.2;color:var(--bone);overflow-wrap:anywhere}
+.cl-a{color:var(--teal-deep);transition:transform .25s,color .25s}
+a.cl:hover .cl-a{color:var(--teal-pale);transform:translateX(3px)}
+.cl-static{grid-template-columns:44px minmax(0,1fr);border-style:dashed;background:transparent}
+.cl-static .cl-i{border-style:dashed}
+body[data-view="home"] .cta-card{text-align:left}
+.cta-card .eyebrow,.cta-card .actions,body[data-view="home"] .cta-card .eyebrow,body[data-view="home"] .cta-card .actions{justify-content:flex-start}
+.cta-card .lede,body[data-view="home"] .cta-card .lede{margin-inline:0}
+@media (max-width:900px){.cta-card{grid-template-columns:minmax(0,1fr)}.cta-mark{width:80%;right:-30%;bottom:-8%}}
+@media (prefers-reduced-motion:reduce){.cl,.cl-a{transition:none}}
 </style>
 
 <header class="nav" id="nav">
@@ -1049,8 +1082,9 @@ body[data-view="contact"] .cta::after{
 
   <section class="sec cta">
     <div class="wrap">
-      <div class="cta-grid">
-        <div>
+      <div class="cta-card">
+        <span class="bird lg cta-mark" aria-hidden="true"></span>
+        <div class="cta-main">
           <p class="eyebrow">Book a call</p>
           <h2>Ready when your <em>footage is.</em></h2>
           <p class="lede">Tell us what you shoot and how often. We'll suggest a package or a retainer and set up your style sheet on the first project.</p>
@@ -1059,19 +1093,12 @@ body[data-view="contact"] .cta::after{
             <a class="btn btn-ghost" href="#packages">View packages</a>
           </div>
         </div>
-        <div class="trail" aria-hidden="true">
-          <span class="bird" style="--i:0;--x:0%;--y:74%;--w:52px;--o:.35"></span>
-          <span class="bird" style="--i:1;--x:15%;--y:62%;--w:64px;--o:.45"></span>
-          <span class="bird" style="--i:2;--x:31%;--y:50%;--w:78px;--o:.55"></span>
-          <span class="bird" style="--i:3;--x:46%;--y:37%;--w:94px;--o:.68"></span>
-          <span class="bird" style="--i:4;--x:61%;--y:23%;--w:112px;--o:.82"></span>
-          <span class="bird" style="--i:5;--x:74%;--y:6%;--w:132px;--o:1"></span>
-        </div>
-      </div>
-      <div class="contact">
-        <div><span>Instagram · Real estate</span><a href="https://instagram.com/n4.creatives.re" target="_blank" rel="noopener">@n4.creatives.re</a></div>
-        <div><span>Instagram · Studio</span><a href="https://instagram.com/n4.mediahouse" target="_blank" rel="noopener">@n4.mediahouse</a></div>
-        <div><span>Time zone</span><p>UTC+7 · Vietnam</p></div>
+        <ul class="cta-links" aria-label="Contact N4.CREATIVES. directly">
+          <li><a class="cl" data-direct href="https://ig.me/m/n4.creatives.re" target="_blank" rel="noopener" aria-label="Message @n4.creatives.re on Instagram"><span class="cl-i"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></span><span class="cl-t"><small>Instagram · Real estate</small><b>@n4.creatives.re</b></span><span class="cl-a" aria-hidden="true">→</span></a></li>
+          <li><a class="cl" data-direct href="https://ig.me/m/n4.mediahouse" target="_blank" rel="noopener" aria-label="Message @n4.mediahouse on Instagram"><span class="cl-i"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></span><span class="cl-t"><small>Instagram · Studio</small><b>@n4.mediahouse</b></span><span class="cl-a" aria-hidden="true">→</span></a></li>
+          <li><a class="cl" data-direct href="https://wa.me/84333683001" target="_blank" rel="noopener" aria-label="Chat on WhatsApp, +84 333 683 001"><span class="cl-i"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8a9.2 9.2 0 0 0-7.9 13.9L3 21.2l4.6-1.1A9.2 9.2 0 1 0 12 2.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.1 7.6c.3-.1.6 0 .7.3l.8 1.9c.1.3 0 .5-.1.7l-.6.7c.6 1.3 1.6 2.3 2.9 2.9l.7-.6c.2-.2.5-.2.7-.1l1.9.8c.3.1.4.4.3.7-.3 1.1-1.3 1.8-2.4 1.6-3-.5-5.6-3.1-6.1-6.1-.2-1.1.5-2.1 1.5-2.4z" fill="currentColor"/></svg></span><span class="cl-t"><small>WhatsApp</small><b>+84&nbsp;333&nbsp;683&nbsp;001</b></span><span class="cl-a" aria-hidden="true">→</span></a></li>
+          <li><div class="cl cl-static"><span class="cl-i"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.2V12l3.2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="cl-t"><small>Time zone · UTC+7, Vietnam</small><b>We edit while you sleep</b></span></div></li>
+        </ul>
       </div>
     </div>
   </section>
