@@ -637,6 +637,11 @@ body[data-view="contact"] .cta::after{
 .rq input[aria-invalid="true"]{border-color:var(--rec);outline:1px solid var(--rec)}
 
 #reqOpts>.rq{flex:1 1 100%;width:100%}
+
+/* Footer social links with icons */
+.foot .soc{display:inline-flex;align-items:center;gap:10px}
+.foot .soc-i{width:18px;height:18px;flex:none;color:var(--bronze);transition:color .2s,transform .2s}
+.foot .soc:hover .soc-i{color:var(--teal-pale);transform:translateY(-1px)}
 </style>
 
 <header class="nav" id="nav">
@@ -1083,9 +1088,9 @@ body[data-view="contact"] .cta::after{
       <div>
         <h4>Follow</h4>
         <ul>
-          <li><a href="https://instagram.com/n4.creatives.re" target="_blank" rel="noopener">@n4.creatives.re</a></li>
-          <li><a href="https://instagram.com/n4.mediahouse" target="_blank" rel="noopener">@n4.mediahouse</a></li>
-          <li><a href="https://wa.me/84333683001" target="_blank" rel="noopener" aria-label="WhatsApp +84 333 683 001">WhatsApp · <span style="white-space:nowrap">+84 333 683 001</span></a></li>
+          <li><a class="soc" data-direct href="https://ig.me/m/n4.creatives.re" target="_blank" rel="noopener" aria-label="Message @n4.creatives.re on Instagram"><svg class="soc-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg><span>@n4.creatives.re</span></a></li>
+          <li><a class="soc" data-direct href="https://ig.me/m/n4.mediahouse" target="_blank" rel="noopener" aria-label="Message @n4.mediahouse on Instagram"><svg class="soc-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg><span>@n4.mediahouse</span></a></li>
+          <li><a class="soc" data-direct href="https://wa.me/84333683001" target="_blank" rel="noopener" aria-label="Chat on WhatsApp, +84 333 683 001"><svg class="soc-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8a9.2 9.2 0 0 0-7.9 13.9L3 21.2l4.6-1.1A9.2 9.2 0 1 0 12 2.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.1 7.6c.3-.1.6 0 .7.3l.8 1.9c.1.3 0 .5-.1.7l-.6.7c.6 1.3 1.6 2.3 2.9 2.9l.7-.6c.2-.2.5-.2.7-.1l1.9.8c.3.1.4.4.3.7-.3 1.1-1.3 1.8-2.4 1.6-3-.5-5.6-3.1-6.1-6.1-.2-1.1.5-2.1 1.5-2.4z" fill="currentColor"/></svg><span>+84&nbsp;333&nbsp;683&nbsp;001</span></a></li>
         </ul>
       </div>
     </div>
@@ -1431,7 +1436,7 @@ body[data-view="contact"] .cta::after{
   req.addEventListener('click',function(e){if(e.target===req)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!req.hidden)close()});
   document.addEventListener('click',function(e){
-    var a=e.target.closest('a[href^="https://ig.me/"]');if(!a||a.closest('#req'))return;
+    var a=e.target.closest('a[href^="https://ig.me/"]');if(!a||a.closest('#req')||a.hasAttribute('data-direct'))return;
     e.preventDefault();open(a);
   });
 })();
