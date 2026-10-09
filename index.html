@@ -645,6 +645,15 @@ body[data-view="contact"] .cta::after{
 
 /* Single-edit prices only in the request sheet; monthly plan prices stay visible */
 .pkg .price,.mini .price{display:none}
+
+/* Nav: centered menu, logo left, call button right */
+@media (min-width:921px){
+  .nav-in{display:grid;grid-template-columns:1fr auto 1fr;gap:24px}
+  .nav-in>.brand{justify-self:start}
+  .nav-in>nav{justify-self:center}
+  .nav-links{margin:0;justify-content:center}
+  .nav-in>.btn{justify-self:end}
+}
 </style>
 
 <header class="nav" id="nav">
