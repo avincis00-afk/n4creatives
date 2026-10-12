@@ -687,6 +687,10 @@ body[data-view="home"] .cta-card{text-align:left}
 .cta-card .lede,body[data-view="home"] .cta-card .lede{margin-inline:0}
 @media (max-width:900px){.cta-card{grid-template-columns:minmax(0,1fr)}.cta-mark{width:80%;right:-30%;bottom:-8%}}
 @media (prefers-reduced-motion:reduce){.cl,.cl-a{transition:none}}
+
+/* AI add-on choice */
+.rq-choice label em{font-style:normal;color:var(--teal-pale);font-weight:600;margin-left:4px}
+.rq-choice input{accent-color:var(--bronze)}
 </style>
 
 <header class="nav" id="nav">
@@ -1358,10 +1362,20 @@ body[data-view="home"] .cta-card{text-align:left}
     if(card){
       var nm=nameOf(card), pr2=priceFor(nm.name), fr=[txt(card.querySelector('.tag.tl')),txt(card.querySelector('.tag.tr'))].filter(Boolean).join(' · ');
       var t=ticks(card);
-      return {kind:'edit',eyebrow:'Single edit',title:nm.name+(nm.ai?' (AI)':''),item:nm.name,price:pr2+' per video',unit:num(pr2),ref:ref('EDIT',nm.name),
-        rows:[['Service','Single edit, per video'],['Package','<b>'+nm.name+'</b>'+(nm.ai?' · AI-assisted':'')],['Price',pr2+' per video'],['Format',fr],['Includes',t.join('<br>')],['Extras','Color correction, music, 2 revision rounds']],
-        lines:['Service: Single edit (per video)','Package: '+nm.name+(nm.ai?' (AI-assisted)':''),'Price: '+pr2+' per video','Format: '+fr,'Includes: '+t.join('; '),'Extras: color correction, music, 2 revision rounds'],
-        fields:[NAME,QTY('Number of videos','1'),{id:'rqDue',label:'Deadline',type:'date',line:'Deadline',empty:'(flexible)',date:true},LINK('Footage link'),{id:'rqPrj',label:'Property address',type:'text',ph:'Street, city',full:true,line:'Property address',empty:'—'}]};
+      var base=num(pr2), AIP=15;
+      var d={kind:'edit',eyebrow:'Single edit',title:nm.name,item:nm.name,price:pr2+' per video',unit:base,ref:ref('EDIT',nm.name),aiOpt:nm.ai,
+        rows:[['Service','Single edit, per video'],['Package','<b>'+nm.name+'</b>'+(nm.ai?' · optional AI add-on (+$'+AIP+' / video)':'')],['Price','<span id="reqPrice">'+pr2+' per video</span>'],['Format',fr],['Includes',t.join('<br>')],['Extras','Color correction, music, 2 revision rounds']],
+        lines:[],
+        fields:[NAME].concat(nm.ai?[{id:'rqAI',type:'choice',label:'Edit type',line:'Edit type'}]:[]).concat([QTY('Number of videos','1'),{id:'rqDue',label:'Deadline',type:'date',line:'Deadline',empty:'(flexible)',date:true},LINK('Footage link'),{id:'rqPrj',label:'Property address',type:'text',ph:'Street, city',full:true,line:'Property address',empty:'—'}])};
+      d.sync=function(){
+        var ai=d.aiOpt&&isAI();d.ai=ai;d.unit=base+(ai?AIP:0);
+        d.price=money(d.unit)+' per video'+(ai?' ('+pr2+' + $'+AIP+' AI)':'');
+        d.item=nm.name+(ai?' + AI':'');d.ref=ref('EDIT',nm.name)+(ai?'-AI':'');
+        d.lines=['Service: Single edit (per video)','Package: '+nm.name+(d.aiOpt?(ai?' · AI-assisted (+$'+AIP+' per video)':' · Standard edit (no AI)'):''),'Price: '+d.price,'Format: '+fr,'Includes: '+t.join('; '),'Extras: color correction, music, 2 revision rounds'];
+        var pe=document.getElementById('reqPrice');if(pe)pe.textContent=d.price;
+        ttl.textContent=nm.name+(ai?' + AI':'');
+      };
+      return d;
     }
     if(custom){
       return {kind:'custom',eyebrow:'Custom quote',title:'Custom edit',item:'Custom edit',price:'',ref:'CUSTOM',rows:[['Service','Custom edit, quoted per brief'],['From page',page]],
@@ -1379,7 +1393,11 @@ body[data-view="home"] .cta-card{text-align:left}
   }
 
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+  function isAI(){var e=opts.querySelector('input[name="rqAI"]:checked');return !!(e&&e.value==='ai')}
   function fieldHTML(f){
+    if(f.type==='choice')return '<div class="rq-row rq-full"><span class="rq-l">'+esc(f.label)+'</span><div class="req-opts rq-choice">'+
+      '<label><input type="radio" name="rqAI" value="std" checked> Standard edit</label>'+
+      '<label><input type="radio" name="rqAI" value="ai"> AI-assisted <em>+$15 / video</em></label></div></div>';
     var a=' id="'+f.id+'" type="'+f.type+'"'+(f.ph?' placeholder="'+esc(f.ph)+'"':'')+(f.val?' value="'+esc(f.val)+'"':'')+(f.min?' min="'+f.min+'" step="1" inputmode="numeric"':'')+(f.req?' required aria-required="true"':'')+(f.id==='rqName'?' autocomplete="name"':'');
     return '<label class="rq-row'+(f.full?' rq-full':'')+'"><span class="rq-l">'+esc(f.label)+(f.req?' *':'')+'</span><input'+a+'></label>';
   }
@@ -1409,6 +1427,7 @@ body[data-view="home"] .cta-card{text-align:left}
   function qty(){return parseInt(fv('rqQty'),10)||0}
 
   function compose(d){
+    if(d.sync)d.sync();
     var L=['Hi N4.CREATIVES., I’d like to book this:',''];
     L.push('• Client name: '+(fv('rqName')||'(please add your name)'));
     d.lines.forEach(function(l){L.push('• '+l)});
@@ -1426,7 +1445,7 @@ body[data-view="home"] .cta-card{text-align:left}
       L.push('• Footage link: '+(fv('rqLink')||'(will send)'));
       if(fv('rqNote'))L.push('• Details: '+fv('rqNote'));
     } else {
-      d.fields.forEach(function(f){if(f.id==='rqName')return;L.push('• '+f.line+': '+(fv(f.id)||f.empty||'—'))});
+      d.fields.forEach(function(f){if(f.id==='rqName'||f.type==='choice')return;L.push('• '+f.line+': '+(fv(f.id)||f.empty||'—'))});
       if(d.kind==='edit'){var q2=qty();if(tot)tot.textContent=(q2&&d.unit)?money(q2*d.unit)+'  ('+q2+' × '+money(d.unit)+')':'—';if(q2&&d.unit)L.push('• Estimated total: '+money(q2*d.unit))}
     }
     L.push('• Ref: '+d.ref,'','(sent from n4creatives.netlify.app)');
