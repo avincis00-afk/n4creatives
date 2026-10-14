@@ -162,6 +162,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--bronze-hi);outline-
 .note{margin-top:28px;font-size:14px;color:var(--mute)}
 .note a{color:var(--bronze-hi)}
 
+/* Temporarily hidden features - delete the class from the markup to restore */
+.feat-off{display:none!important}
+
 /* Retainer */
 .retainer{background:var(--ink-2);border-block:1px solid var(--line-soft);overflow:clip;position:relative}
 .retainer-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);align-items:start}
@@ -705,7 +708,7 @@ body[data-view="home"] .cta-card{text-align:left}
     <nav aria-label="Main">
       <ul class="nav-links">
         <li><a href="#packages" data-nav="packages">Packages</a></li>
-        <li><a href="#retainer" data-nav="retainer">Retainer</a></li>
+        <li class="feat-off"><a href="#retainer" data-nav="retainer">Retainer</a></li>
         <li><a href="#why" data-nav="why">Why N4</a></li>
         <li><a href="#contact" data-nav="contact">Contact</a></li>
       </ul>
@@ -717,7 +720,7 @@ body[data-view="home"] .cta-card{text-align:left}
     <ul>
       <li><a href="#home" data-nav="home">Home</a></li>
       <li><a href="#packages" data-nav="packages">Packages</a></li>
-      <li><a href="#retainer" data-nav="retainer">Retainer</a></li>
+      <li class="feat-off"><a href="#retainer" data-nav="retainer">Retainer</a></li>
       <li><a href="#why" data-nav="why">Why N4</a></li>
       <li><a href="#contact" data-nav="contact">Contact</a></li>
     </ul>
@@ -806,7 +809,7 @@ body[data-view="home"] .cta-card{text-align:left}
     </div>
   </section>
 
-  <section class="sec home-ret">
+  <section class="sec home-ret feat-off">
     <span class="bird lg watermark" aria-hidden="true"></span>
     <div class="wrap center">
       <div class="sec-head">
@@ -1092,7 +1095,7 @@ body[data-view="home"] .cta-card{text-align:left}
         <div class="cta-main">
           <p class="eyebrow">Book a call</p>
           <h2>Ready when your <em>footage is.</em></h2>
-          <p class="lede">Tell us what you shoot and how often. We'll suggest a package or a retainer and set up your style sheet on the first project.</p>
+          <p class="lede">Tell us what you shoot and how often. We'll suggest a package and set up your style sheet on the first project.</p>
           <div class="actions">
             <a class="btn btn-solid" href="https://ig.me/m/n4.creatives.re" target="_blank" rel="noopener">Book a call <span class="arr">→</span></a>
             <a class="btn btn-ghost" href="#packages">View packages</a>
@@ -1124,7 +1127,7 @@ body[data-view="home"] .cta-card{text-align:left}
         <ul>
           <li><a href="#home" data-nav="home">Home</a></li>
           <li><a href="#packages" data-nav="packages">Packages</a></li>
-          <li><a href="#retainer" data-nav="retainer">Retainer</a></li>
+          <li class="feat-off"><a href="#retainer" data-nav="retainer">Retainer</a></li>
           <li><a href="#why" data-nav="why">Why N4</a></li>
           <li><a href="#contact" data-nav="contact">Contact</a></li>
         </ul>
@@ -1167,7 +1170,7 @@ body[data-view="home"] .cta-card{text-align:left}
 
 
   /* Pages: show one view per tab, like separate pages */
-  var ROUTES=['home','packages','retainer','why','contact'];
+  var ROUTES=['home','packages','why','contact'];
   var views=[].slice.call(document.querySelectorAll('.view')), cta=document.querySelector('.cta');
   function current(){var r=(location.hash||'').replace('#','');if(r==='process')return 'why';return ROUTES.indexOf(r)<0?'home':r}
   function replay(el){el.classList.remove('enter');void el.offsetWidth;el.classList.add('enter')}
