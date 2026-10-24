@@ -755,6 +755,10 @@ body[data-view="home"] .cta-card{text-align:left}
   .wk-head{grid-template-columns:auto minmax(0,1fr)}
   .wk-ctl{grid-column:1/-1}
 }
+
+/* Letterbox fill: a blurred copy of the cover behind videos narrower than their frame */
+.frame .fill,.wk-media .fill{position:absolute;inset:-24px;background:var(--ink-2) center/cover no-repeat;filter:blur(22px) brightness(.5) saturate(1.15);transform:scale(1.08)}
+.frame.fit video,.wk-media.fit video{object-fit:contain}
 </style>
 
 <header class="nav" id="nav">
@@ -769,7 +773,6 @@ body[data-view="home"] .cta-card{text-align:left}
         <li><a href="#packages" data-nav="packages">Packages</a></li>
         <li class="feat-off"><a href="#retainer" data-nav="retainer">Retainer</a></li>
         <li><a href="#why" data-nav="why">Why N4</a></li>
-        <li><a href="#contact" data-nav="contact">Contact</a></li>
       </ul>
     </nav>
     <a class="btn btn-solid" href="https://ig.me/m/n4.creatives.re" target="_blank" rel="noopener">Book a call</a>
@@ -782,7 +785,6 @@ body[data-view="home"] .cta-card{text-align:left}
       <li><a href="#packages" data-nav="packages">Packages</a></li>
       <li class="feat-off"><a href="#retainer" data-nav="retainer">Retainer</a></li>
       <li><a href="#why" data-nav="why">Why N4</a></li>
-      <li><a href="#contact" data-nav="contact">Contact</a></li>
     </ul>
     <a class="btn btn-solid" href="https://ig.me/m/n4.creatives.re" target="_blank" rel="noopener">Book a call <span class="arr">→</span></a>
   </div>
@@ -846,7 +848,7 @@ body[data-view="home"] .cta-card{text-align:left}
           </div>
         </article>
         <article class="mini h">
-          <button type="button" class="stage" data-video="media/cinematic-listing.mp4" data-title="Cinematic Listing · sample edit" aria-label="Play the Cinematic Listing sample with sound"><span class="frame h has-video" style="--ar:4/3"><video class="pv" muted loop playsinline preload="metadata" poster="media/cinematic-listing.jpg" aria-hidden="true"><source src="media/cinematic-listing.mp4" type="video/mp4"></video><span class="tag tl">4:3</span><span class="tag tr">3.2K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/cinematic-listing.mp4" data-title="Cinematic Listing · sample edit" aria-label="Play the Cinematic Listing sample with sound"><span class="frame h has-video fit" style="--ar:16/9"><span class="fill" aria-hidden="true"></span><video class="pv" muted loop playsinline preload="metadata" poster="media/cinematic-listing.jpg" aria-hidden="true"><source src="media/cinematic-listing.mp4" type="video/mp4"></video><span class="tag tl">16:9</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="mini-body">
             <div class="mini-head"><h3>Cinematic Listing</h3></div>
             <ul class="ticks"><li>Story-led, cinematic</li><li>Graded &amp; sound-designed</li><li>Premium visual</li></ul>
@@ -974,7 +976,8 @@ body[data-view="home"] .cta-card{text-align:left}
     {key:'agent-branding',name:'Agent Branding',line:'Talking head + b-roll · subtitled',fmt:'9:16',o:'v'},
     {key:'viral-cut',name:'Viral Cut',line:'Hook in the first second · bold captions',fmt:'9:16',o:'v'},
     {key:'cinematic-listing',name:'Cinematic Listing',line:'Story-led · graded & sound-designed',fmt:'16:9',o:'h'},
-    {key:'walkthrough',name:'Walkthrough',line:'Clean, ambient · fastest turnaround',fmt:'16:9',o:'h'}
+    {key:'walkthrough',name:'Walkthrough',line:'Clean, ambient · fastest turnaround',fmt:'16:9',o:'h'},
+    {key:'closing-day',name:'Closing Day',line:'Keys, smiles & the sold sign · celebration cut',fmt:'9:16',o:'v',ask:true}
   ];
   var WORK=[
     {cat:'social-reel',src:'media/social-reel-neuberend.mp4',poster:'media/social-reel-neuberend.jpg',title:'',meta:'',len:'1:01',ar:'9/16'},
@@ -1006,21 +1009,23 @@ body[data-view="home"] .cta-card{text-align:left}
   var chips=['<button type="button" class="wk-chip" data-filter="all" aria-pressed="true">All <span>'+WORK.length+'</span></button>'];
   var html=CATS.map(function(c,i){
     var items=shuffle(WORK.filter(function(w){return w.cat===c.key})).map(function(w,k){var o={};for(var x in w)o[x]=w[x];if(!o.title)o.title='Edit '+String(k+1).padStart(2,'0');return o});
-    chips.push('<button type="button" class="wk-chip" data-filter="'+c.key+'" aria-pressed="false">'+esc(c.name)+' <span>'+items.length+'</span></button>');
+    chips.push('<button type="button" class="wk-chip" data-filter="'+c.key+'" aria-pressed="false">'+esc(c.name)+(items.length?' <span>'+items.length+'</span>':'')+'</button>');
     var ar=c.o==='v'?'9/16':'16/9';
     var cards=items.map(function(w){
+      var fit=(w.ar||ar)!==ar;
       var t=c.name+' · '+w.title+(w.meta?' · '+w.meta:'');
-      return '<article class="wk-card"><button type="button" class="wk-media" style="--ar:'+esc(w.ar||ar)+'" data-video="'+esc(w.src)+'" data-poster="'+esc(w.poster||'')+'" data-title="'+esc(t)+'" aria-label="Play '+esc(t)+' with sound">'+
+      return '<article class="wk-card"><button type="button" class="wk-media'+(fit?' fit':'')+'" style="--ar:'+ar+'" data-video="'+esc(w.src)+'" data-poster="'+esc(w.poster||'')+'" data-title="'+esc(t)+'" aria-label="Play '+esc(t)+' with sound">'+
+        (fit?'<span class="fill" aria-hidden="true" style="background-image:url(&quot;'+esc(w.poster||'')+'&quot;)"></span>':'')+
         '<video class="pv" muted loop playsinline preload="none" poster="'+esc(w.poster||'')+'" data-src="'+esc(w.src)+'" aria-hidden="true"></video>'+
         '<span class="tag tl">'+esc(c.fmt)+'</span><span class="tag tr">'+esc(w.len||'')+'</span><span class="play" aria-hidden="true"></span></button>'+
         '<p class="wk-cap"><strong>'+esc(w.title)+'</strong>'+(w.meta?'<span>'+esc(w.meta)+'</span>':'')+'</p></article>';
     }).join('');
-    cards+='<a class="wk-more" style="--ar:'+esc((items[0]&&items[0].ar)||ar)+'" data-direct href="'+IG+'" target="_blank" rel="noopener"><span>More '+esc(c.name)+' edits</span><strong>Ask for the full reel →</strong></a>';
+    cards+='<a class="wk-more" style="--ar:'+ar+'" data-direct href="'+IG+'" target="_blank" rel="noopener"><span>'+(items.length?'More '+esc(c.name)+' edits':esc(c.name)+' samples coming soon')+'</span><strong>'+(items.length?'Ask for the full reel →':'Ask for examples →')+'</strong></a>';
     return '<section class="wk-cat" data-cat="'+c.key+'" aria-labelledby="wk-'+c.key+'">'+
       '<header class="wk-head"><span class="wk-n" aria-hidden="true">'+String(i+1).padStart(2,'0')+'</span>'+
-      '<div><div class="wk-title"><h3 id="wk-'+c.key+'">'+esc(c.name)+'</h3><span class="wk-count">'+items.length+(items.length===1?' edit':' edits')+'</span></div><p>'+esc(c.line)+' · '+esc(c.fmt)+'</p></div>'+
+      '<div><div class="wk-title"><h3 id="wk-'+c.key+'">'+esc(c.name)+'</h3><span class="wk-count">'+(items.length?items.length+(items.length===1?' edit':' edits'):'Coming soon')+'</span></div><p>'+esc(c.line)+' · '+esc(c.fmt)+'</p></div>'+
       '<div class="wk-ctl"><button type="button" class="wk-arr" data-dir="-1" aria-label="Previous '+esc(c.name)+' edits">←</button><button type="button" class="wk-arr" data-dir="1" aria-label="Next '+esc(c.name)+' edits">→</button>'+
-      '<a class="btn btn-line" href="#packages">Order this edit <span class="arr">→</span></a></div></header>'+
+      (c.ask?'<a class="btn btn-line" data-direct href="'+IG+'" target="_blank" rel="noopener">Ask about this edit <span class="arr">→</span></a>':'<a class="btn btn-line" href="#packages">Order this edit <span class="arr">→</span></a>')+'</div></header>'+
       '<div class="wk-grid '+c.o+'">'+cards+'</div></section>';
   }).join('');
   list.innerHTML=html; bar.innerHTML=chips.join('');
@@ -1089,7 +1094,7 @@ body[data-view="home"] .cta-card{text-align:left}
         </article>
 
         <article class="pkg h">
-          <button type="button" class="stage" data-video="media/cinematic-listing.mp4" data-title="Cinematic Listing · sample edit" aria-label="Play the Cinematic Listing sample with sound"><span class="frame h has-video" style="--ar:4/3"><video class="pv" muted loop playsinline preload="metadata" poster="media/cinematic-listing.jpg" aria-hidden="true"><source src="media/cinematic-listing.mp4" type="video/mp4"></video><span class="tag tl">4:3</span><span class="tag tr">3.2K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/cinematic-listing.mp4" data-title="Cinematic Listing · sample edit" aria-label="Play the Cinematic Listing sample with sound"><span class="frame h has-video fit" style="--ar:16/9"><span class="fill" aria-hidden="true"></span><video class="pv" muted loop playsinline preload="metadata" poster="media/cinematic-listing.jpg" aria-hidden="true"><source src="media/cinematic-listing.mp4" type="video/mp4"></video><span class="tag tl">16:9</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="pkg-body">
             <div class="pkg-head"><h3>Cinematic Listing</h3><p class="price">$120</p></div>
             <ul class="ticks"><li>Story-led, cinematic</li><li>Graded &amp; sound-designed</li><li>Premium visual</li></ul>
@@ -1292,7 +1297,6 @@ body[data-view="home"] .cta-card{text-align:left}
           <li><a href="#packages" data-nav="packages">Packages</a></li>
           <li class="feat-off"><a href="#retainer" data-nav="retainer">Retainer</a></li>
           <li><a href="#why" data-nav="why">Why N4</a></li>
-          <li><a href="#contact" data-nav="contact">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -1335,6 +1339,7 @@ body[data-view="home"] .cta-card{text-align:left}
     var v=b.querySelector('video'), so=v&&v.querySelector('source');
     if(v){v.poster=pick.poster;if(so)so.src=pick.src;else v.setAttribute('data-src',pick.src);v.load()}
   });
+  [].forEach.call(document.querySelectorAll('.frame.fit'),function(f){var v=f.querySelector('video'),fl=f.querySelector('.fill');if(v&&fl&&v.getAttribute('poster'))fl.style.backgroundImage='url("'+v.getAttribute('poster')+'")'});
 })();
 </script>
 <script>
@@ -1350,9 +1355,9 @@ body[data-view="home"] .cta-card{text-align:left}
 
 
   /* Pages: show one view per tab, like separate pages */
-  var ROUTES=['home','work','packages','why','contact'];
+  var ROUTES=['home','work','packages','why'];
   var views=[].slice.call(document.querySelectorAll('.view')), cta=document.querySelector('.cta');
-  function current(){var r=(location.hash||'').replace('#','');if(r==='process')return 'why';return ROUTES.indexOf(r)<0?'home':r}
+  function current(){var r=(location.hash||'').replace('#','');if(r==='process')return 'why';if(r==='contact')return 'home';return ROUTES.indexOf(r)<0?'home':r}
   function replay(el){el.classList.remove('enter');void el.offsetWidth;el.classList.add('enter')}
   function route(){
     var r=current();
@@ -1363,6 +1368,7 @@ body[data-view="home"] .cta-card{text-align:left}
       if(a.getAttribute('data-nav')===r)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
     });
     window.scrollTo({top:0,left:0,behavior:'instant'});
+    if(location.hash==='#contact'&&cta)setTimeout(function(){cta.scrollIntoView({behavior:'instant'})},0);
     if(location.hash==='#process'){var ps=document.getElementById('process');if(ps)setTimeout(function(){ps.scrollIntoView({behavior:'instant'})},0)}
     if(r==='home')setTimeout(function(){window.dispatchEvent(new Event('resize'))},0);
   }
