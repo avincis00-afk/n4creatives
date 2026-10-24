@@ -719,7 +719,7 @@ body[data-view="home"] .cta-card{text-align:left}
 .wk-cat[hidden]{display:none}
 .wk-cat:first-child{border-top:0;padding-top:0}
 .wk-cat.enter{animation:viewIn .5s cubic-bezier(.2,.7,.2,1) both}
-.wk-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:end;gap:8px clamp(18px,2.4vw,32px)}
+.wk-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px clamp(18px,2.4vw,32px)}
 .wk-n{font:800 clamp(44px,5vw,68px)/.8 var(--f-display);background:linear-gradient(180deg,var(--teal-pale),var(--teal-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
 .wk-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
 .wk-head h3{font-size:clamp(30px,3vw,42px)}
@@ -868,7 +868,7 @@ img,video,canvas,svg{max-width:100%}
       </div>
       <div class="rail">
         <article class="mini v">
-          <button type="button" class="stage" data-video="media/social-reel-neuberend.mp4" data-poster="media/social-reel-neuberend.jpg" data-title="Social Reel · sample edit" aria-label="Play the Social Reel sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" poster="media/pv/social-reel-neuberend.jpg" aria-hidden="true"><source src="media/pv/social-reel-neuberend.mp4" type="video/mp4"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/social-reel-neuberend.mp4" data-poster="media/social-reel-neuberend.jpg" data-title="Social Reel · sample edit" aria-label="Play the Social Reel sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" data-poster="media/social-reel-neuberend.jpg" data-src="media/pv/social-reel-neuberend.mp4" aria-hidden="true"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="mini-body">
             <div class="mini-head"><h3>Social Reel<span class="ai-tag">AI</span></h3></div>
             <ul class="ticks"><li>Fast, beat-synced</li><li>Kinetic captions</li><li>Reels, TikTok, Shorts</li></ul>
@@ -876,7 +876,7 @@ img,video,canvas,svg{max-width:100%}
           </div>
         </article>
         <article class="mini v">
-          <button type="button" class="stage" data-video="media/agent-branding.mp4" data-poster="media/agent-branding.jpg" data-title="Agent Branding · sample edit" aria-label="Play the Agent Branding sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" poster="media/pv/agent-branding.jpg" aria-hidden="true"><source src="media/pv/agent-branding.mp4" type="video/mp4"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/agent-branding.mp4" data-poster="media/agent-branding.jpg" data-title="Agent Branding · sample edit" aria-label="Play the Agent Branding sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" data-poster="media/agent-branding.jpg" data-src="media/pv/agent-branding.mp4" aria-hidden="true"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="mini-body">
             <div class="mini-head"><h3>Agent Branding</h3></div>
             <ul class="ticks"><li>Talking head + b-roll</li><li>Text-driven, subtitled</li><li>Authority &amp; reach</li></ul>
@@ -884,7 +884,7 @@ img,video,canvas,svg{max-width:100%}
           </div>
         </article>
         <article class="mini v">
-          <button type="button" class="stage" data-video="media/viral-cut.mp4" data-poster="media/viral-cut.jpg" data-title="Viral Cut · sample edit" aria-label="Play the Viral Cut sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" poster="media/pv/viral-cut.jpg" aria-hidden="true"><source src="media/pv/viral-cut.mp4" type="video/mp4"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/viral-cut.mp4" data-poster="media/viral-cut.jpg" data-title="Viral Cut · sample edit" aria-label="Play the Viral Cut sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" data-poster="media/viral-cut.jpg" data-src="media/pv/viral-cut.mp4" aria-hidden="true"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="mini-body">
             <div class="mini-head"><h3>Viral Cut<span class="ai-tag">AI</span></h3></div>
             <ul class="ticks"><li>Hook in the first second</li><li>Trend-driven, bold captions</li><li>Built for shares &amp; reach</li></ul>
@@ -892,7 +892,7 @@ img,video,canvas,svg{max-width:100%}
           </div>
         </article>
         <article class="mini h">
-          <button type="button" class="stage" data-video="media/cinematic-listing.mp4" data-poster="media/cinematic-listing.jpg" data-title="Cinematic Listing · sample edit" aria-label="Play the Cinematic Listing sample with sound"><span class="frame h has-video fit" style="--ar:16/9"><span class="fill" aria-hidden="true"></span><video class="pv" muted loop playsinline preload="none" poster="media/pv/cinematic-listing.jpg" aria-hidden="true"><source src="media/pv/cinematic-listing.mp4" type="video/mp4"></video><span class="tag tl">16:9</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/cinematic-listing.mp4" data-poster="media/cinematic-listing.jpg" data-title="Cinematic Listing · sample edit" aria-label="Play the Cinematic Listing sample with sound"><span class="frame h has-video fit" style="--ar:16/9"><span class="fill" aria-hidden="true"></span><video class="pv" muted loop playsinline preload="none" data-poster="media/cinematic-listing.jpg" data-src="media/pv/cinematic-listing.mp4" aria-hidden="true"></video><span class="tag tl">16:9</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="mini-body">
             <div class="mini-head"><h3>Cinematic Listing</h3></div>
             <ul class="ticks"><li>Story-led, cinematic</li><li>Graded &amp; sound-designed</li><li>Premium visual</li></ul>
@@ -900,7 +900,7 @@ img,video,canvas,svg{max-width:100%}
           </div>
         </article>
         <article class="mini h">
-          <button type="button" class="stage" data-video="media/walkthrough.mp4" data-poster="media/walkthrough.jpg" data-title="Walkthrough · sample edit" aria-label="Play the Walkthrough sample with sound"><span class="frame h has-video"><video class="pv" muted loop playsinline preload="none" poster="media/pv/walkthrough.jpg" aria-hidden="true"><source src="media/pv/walkthrough.mp4" type="video/mp4"></video><span class="tag tl">16:9</span><span class="tag tr">1080p</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/walkthrough.mp4" data-poster="media/walkthrough.jpg" data-title="Walkthrough · sample edit" aria-label="Play the Walkthrough sample with sound"><span class="frame h has-video"><video class="pv" muted loop playsinline preload="none" data-poster="media/walkthrough.jpg" data-src="media/pv/walkthrough.mp4" aria-hidden="true"></video><span class="tag tl">16:9</span><span class="tag tr">1080p</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="mini-body">
             <div class="mini-head"><h3>Walkthrough</h3></div>
             <ul class="ticks"><li>Clean, ambient</li><li>Premium visual / Premium sound</li><li>Fastest turnaround</li></ul>
@@ -1073,15 +1073,15 @@ img,video,canvas,svg{max-width:100%}
       var fit=(w.ar||ar)!==ar;
       var t=c.name+' · '+w.title+(w.meta?' · '+w.meta:'');
       return '<article class="wk-card"><button type="button" class="wk-media'+(fit?' fit':'')+'" style="--ar:'+ar+'" data-video="'+esc(w.src)+'" data-poster="'+esc(w.poster||'')+'" data-title="'+esc(t)+'" aria-label="Play '+esc(t)+' with sound">'+
-        (fit?'<span class="fill" aria-hidden="true" style="background-image:url(&quot;'+esc(pv(w.poster))+'&quot;)"></span>':'')+
-        '<video class="pv" muted loop playsinline preload="none" poster="'+esc(pv(w.poster))+'" data-src="'+esc(pv(w.src))+'" aria-hidden="true"></video>'+
+        (fit?'<span class="fill" aria-hidden="true" style="background-image:url(&quot;'+esc(w.poster||'')+'&quot;)"></span>':'')+
+        '<video class="pv" muted loop playsinline preload="none" data-poster="'+esc(w.poster||'')+'" data-src="'+esc(pv(w.src))+'" aria-hidden="true"></video>'+
         '<span class="tag tl">'+esc(c.fmt)+'</span><span class="tag tr">'+esc(w.len||'')+'</span><span class="play" aria-hidden="true"></span></button>'+
         '<p class="wk-cap"><strong>'+esc(w.title)+'</strong>'+(w.meta?'<span>'+esc(w.meta)+'</span>':'')+'</p></article>';
     }).join('');
     cards+='<a class="wk-more" style="--ar:'+ar+'" data-direct href="'+IG+'" target="_blank" rel="noopener"><span>'+(items.length?'More '+esc(c.name)+' edits':esc(c.name)+' samples coming soon')+'</span><strong>'+(items.length?'Ask for the full reel →':'Ask for examples →')+'</strong></a>';
     return '<section class="wk-cat" data-cat="'+c.key+'" aria-labelledby="wk-'+c.key+'">'+
       '<header class="wk-head"><span class="wk-n" aria-hidden="true">'+String(i+1).padStart(2,'0')+'</span>'+
-      '<div><div class="wk-title"><h3 id="wk-'+c.key+'">'+esc(c.name)+'</h3><span class="wk-count">'+(items.length?items.length+(items.length===1?' edit':' edits'):'Coming soon')+'</span></div><p>'+esc(c.line)+' · '+esc(c.fmt)+'</p></div>'+
+      '<div><div class="wk-title"><h3 id="wk-'+c.key+'">'+esc(c.name)+'</h3><span class="wk-count">'+(items.length?items.length+(items.length===1?' edit':' edits'):'Coming soon')+'</span></div></div>'+
       '<div class="wk-ctl"><button type="button" class="wk-arr" data-dir="-1" aria-label="Previous '+esc(c.name)+' edits">←</button><button type="button" class="wk-arr" data-dir="1" aria-label="Next '+esc(c.name)+' edits">→</button>'+
       (c.ask?'<a class="btn btn-line" data-direct href="'+IG+'" target="_blank" rel="noopener">Ask about this edit <span class="arr">→</span></a>':'<a class="btn btn-line" href="#packages">Order this edit <span class="arr">→</span></a>')+'</div></header>'+
       '<div class="wk-grid '+c.o+'">'+cards+'</div></section>';
@@ -1125,7 +1125,7 @@ img,video,canvas,svg{max-width:100%}
 
       <div class="pkgs">
         <article class="pkg v">
-          <button type="button" class="stage" data-video="media/social-reel-neuberend.mp4" data-poster="media/social-reel-neuberend.jpg" data-title="Social Reel · sample edit" aria-label="Play the Social Reel sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" poster="media/pv/social-reel-neuberend.jpg" aria-hidden="true"><source src="media/pv/social-reel-neuberend.mp4" type="video/mp4"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/social-reel-neuberend.mp4" data-poster="media/social-reel-neuberend.jpg" data-title="Social Reel · sample edit" aria-label="Play the Social Reel sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" data-poster="media/social-reel-neuberend.jpg" data-src="media/pv/social-reel-neuberend.mp4" aria-hidden="true"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="pkg-body">
             <div class="pkg-head"><h3>Social Reel<span class="ai-tag">AI</span></h3><p class="price">$130</p></div>
             <ul class="ticks"><li>Fast, beat-synced</li><li>Kinetic captions</li><li>Reels, TikTok, Shorts</li></ul>
@@ -1134,7 +1134,7 @@ img,video,canvas,svg{max-width:100%}
         </article>
 
         <article class="pkg v">
-          <button type="button" class="stage" data-video="media/agent-branding.mp4" data-poster="media/agent-branding.jpg" data-title="Agent Branding · sample edit" aria-label="Play the Agent Branding sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" poster="media/pv/agent-branding.jpg" aria-hidden="true"><source src="media/pv/agent-branding.mp4" type="video/mp4"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/agent-branding.mp4" data-poster="media/agent-branding.jpg" data-title="Agent Branding · sample edit" aria-label="Play the Agent Branding sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" data-poster="media/agent-branding.jpg" data-src="media/pv/agent-branding.mp4" aria-hidden="true"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="pkg-body">
             <div class="pkg-head"><h3>Agent Branding</h3><p class="price">$150</p></div>
             <ul class="ticks"><li>Talking head + b-roll</li><li>Text-driven, subtitled</li><li>Authority &amp; reach</li></ul>
@@ -1143,7 +1143,7 @@ img,video,canvas,svg{max-width:100%}
         </article>
 
         <article class="pkg v">
-          <button type="button" class="stage" data-video="media/viral-cut.mp4" data-poster="media/viral-cut.jpg" data-title="Viral Cut · sample edit" aria-label="Play the Viral Cut sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" poster="media/pv/viral-cut.jpg" aria-hidden="true"><source src="media/pv/viral-cut.mp4" type="video/mp4"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/viral-cut.mp4" data-poster="media/viral-cut.jpg" data-title="Viral Cut · sample edit" aria-label="Play the Viral Cut sample with sound"><span class="frame v has-video"><video class="pv" muted loop playsinline preload="none" data-poster="media/viral-cut.jpg" data-src="media/pv/viral-cut.mp4" aria-hidden="true"></video><span class="tag tl">9:16</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="pkg-body">
             <div class="pkg-head"><h3>Viral Cut<span class="ai-tag">AI</span></h3><p class="price">$180</p></div>
             <ul class="ticks"><li>Hook in the first second</li><li>Trend-driven, bold captions</li><li>Built for shares &amp; reach</li></ul>
@@ -1152,7 +1152,7 @@ img,video,canvas,svg{max-width:100%}
         </article>
 
         <article class="pkg h">
-          <button type="button" class="stage" data-video="media/cinematic-listing.mp4" data-poster="media/cinematic-listing.jpg" data-title="Cinematic Listing · sample edit" aria-label="Play the Cinematic Listing sample with sound"><span class="frame h has-video fit" style="--ar:16/9"><span class="fill" aria-hidden="true"></span><video class="pv" muted loop playsinline preload="none" poster="media/pv/cinematic-listing.jpg" aria-hidden="true"><source src="media/pv/cinematic-listing.mp4" type="video/mp4"></video><span class="tag tl">16:9</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/cinematic-listing.mp4" data-poster="media/cinematic-listing.jpg" data-title="Cinematic Listing · sample edit" aria-label="Play the Cinematic Listing sample with sound"><span class="frame h has-video fit" style="--ar:16/9"><span class="fill" aria-hidden="true"></span><video class="pv" muted loop playsinline preload="none" data-poster="media/cinematic-listing.jpg" data-src="media/pv/cinematic-listing.mp4" aria-hidden="true"></video><span class="tag tl">16:9</span><span class="tag tr">4K</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="pkg-body">
             <div class="pkg-head"><h3>Cinematic Listing</h3><p class="price">$120</p></div>
             <ul class="ticks"><li>Story-led, cinematic</li><li>Graded &amp; sound-designed</li><li>Premium visual</li></ul>
@@ -1161,7 +1161,7 @@ img,video,canvas,svg{max-width:100%}
         </article>
 
         <article class="pkg h">
-          <button type="button" class="stage" data-video="media/walkthrough.mp4" data-poster="media/walkthrough.jpg" data-title="Walkthrough · sample edit" aria-label="Play the Walkthrough sample with sound"><span class="frame h has-video"><video class="pv" muted loop playsinline preload="none" poster="media/pv/walkthrough.jpg" aria-hidden="true"><source src="media/pv/walkthrough.mp4" type="video/mp4"></video><span class="tag tl">16:9</span><span class="tag tr">1080p</span><span class="play" aria-hidden="true"></span></span></button>
+          <button type="button" class="stage" data-video="media/walkthrough.mp4" data-poster="media/walkthrough.jpg" data-title="Walkthrough · sample edit" aria-label="Play the Walkthrough sample with sound"><span class="frame h has-video"><video class="pv" muted loop playsinline preload="none" data-poster="media/walkthrough.jpg" data-src="media/pv/walkthrough.mp4" aria-hidden="true"></video><span class="tag tl">16:9</span><span class="tag tr">1080p</span><span class="play" aria-hidden="true"></span></span></button>
           <div class="pkg-body">
             <div class="pkg-head"><h3>Walkthrough</h3><p class="price">$150</p></div>
             <ul class="ticks"><li>Clean, ambient</li><li>Premium visual / Premium sound</li><li>Fastest turnaround</li></ul>
@@ -1394,10 +1394,10 @@ img,video,canvas,svg{max-width:100%}
     var pick=pool[Math.floor(Math.random()*pool.length)];
     if(pick.src===cur)return;
     b.setAttribute('data-video',pick.src);b.setAttribute('data-poster',pick.poster);
-    var v=b.querySelector('video'), so=v&&v.querySelector('source');
-    if(v){v.poster=pv(pick.poster);if(so)so.src=pv(pick.src);else v.setAttribute('data-src',pv(pick.src));v.load()}
+    var v=b.querySelector('video');
+    if(v){v.setAttribute('data-poster',pick.poster);v.removeAttribute('poster');v.setAttribute('data-src',pv(pick.src))}
   });
-  [].forEach.call(document.querySelectorAll('.frame.fit'),function(f){var v=f.querySelector('video'),fl=f.querySelector('.fill');if(v&&fl&&v.getAttribute('poster'))fl.style.backgroundImage='url("'+v.getAttribute('poster')+'")'});
+  [].forEach.call(document.querySelectorAll('.frame.fit'),function(f){var v=f.querySelector('video'),fl=f.querySelector('.fill'),ps=v&&(v.getAttribute('data-poster')||v.getAttribute('poster'));if(fl&&ps)fl.style.backgroundImage='url("'+ps+'")'});
 })();
 </script>
 <script>
@@ -1457,9 +1457,15 @@ img,video,canvas,svg{max-width:100%}
   document.addEventListener('click',function(e){var b=e.target.closest('[data-video]');if(b){e.preventDefault();openLB(b.getAttribute('data-video'),b.getAttribute('data-title'),b.getAttribute('data-poster'))}});
   lb.addEventListener('click',function(e){if(e.target===lb||e.target.closest('#lbClose'))closeLB()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)closeLB()});
+  /* Covers load only when a video is near the screen, so the first videos get the bandwidth */
+  function setPoster(v){var ps=v.getAttribute('data-poster');if(ps){v.setAttribute('poster',ps);v.removeAttribute('data-poster')}}
+  if('IntersectionObserver' in window){
+    var lio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){setPoster(en.target);lio.unobserve(en.target)}})},{rootMargin:'300px'});
+    previews.forEach(function(v){lio.observe(v)});
+  } else previews.forEach(setPoster);
   var seen=new Set();
   var active=[];
-  function playPv(v){if(!v.querySelector('source')&&!v.getAttribute('src')){var ds=v.getAttribute('data-src');if(ds)v.setAttribute('src',ds)}v.muted=true;
+  function playPv(v){if(!v.getAttribute('src')){var ds=v.getAttribute('data-src');if(ds)v.setAttribute('src',ds)}v.muted=true;
     active=active.filter(function(x){return x!==v});active.push(v);while(active.length>3)active.shift().pause();
     var pr=v.play();if(pr&&pr.catch)pr.catch(function(){})}
   function wake(){if(reduce||!lb.hidden)return;previews.forEach(function(v){if(seen.has(v))playPv(v)})}
@@ -1467,7 +1473,7 @@ img,video,canvas,svg{max-width:100%}
     var pio=new IntersectionObserver(function(es){es.forEach(function(en){
       var v=en.target;
       if(en.isIntersecting){seen.add(v);if(!reduce&&lb.hidden)playPv(v)}else{seen.delete(v);active=active.filter(function(x){return x!==v});v.pause()}
-    })},{threshold:.5});
+    })},{threshold:.65});
     previews.forEach(function(v){pio.observe(v)});
   }
 
