@@ -1452,7 +1452,7 @@ body[data-view="home"] .cta-card{text-align:left}
       d.fields.forEach(function(f){if(f.id==='rqName'||f.type==='choice')return;L.push('• '+f.line+': '+(fv(f.id)||f.empty||'—'))});
       if(d.kind==='edit'){var q2=qty();if(tot)tot.textContent=(q2&&d.unit)?money(q2*d.unit)+'  ('+q2+' × '+money(d.unit)+')':'—';if(q2&&d.unit)L.push('• Estimated total: '+money(q2*d.unit))}
     }
-    L.push('• Ref: '+d.ref,'','(sent from n4creatives.netlify.app)');
+    L.push('• Ref: '+d.ref,'','(sent from '+(location.hostname||'n4creatives')+')');
     return L.join('\n');
   }
   function open(a){
