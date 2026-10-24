@@ -971,18 +971,25 @@ body[data-view="home"] .cta-card{text-align:left}
     {key:'walkthrough',name:'Walkthrough',line:'Clean, ambient · fastest turnaround',fmt:'16:9',o:'h'}
   ];
   var WORK=[
-    {cat:'social-reel',src:'media/social-reel.mp4',poster:'media/social-reel.jpg',title:'Edit 01',meta:'',len:'0:51',ar:'9/16'},
-    {cat:'agent-branding',src:'media/agent-branding.mp4',poster:'media/agent-branding.jpg',title:'Edit 01',meta:'',len:'0:55',ar:'9/16'},
-    {cat:'viral-cut',src:'media/viral-cut.mp4',poster:'media/viral-cut.jpg',title:'Edit 01',meta:'',len:'0:37',ar:'9/16'},
-    {cat:'cinematic-listing',src:'media/cinematic-listing.mp4',poster:'media/cinematic-listing.jpg',title:'Edit 01',meta:'',len:'0:51',ar:'4/3'},
-    {cat:'walkthrough',src:'media/walkthrough.mp4',poster:'media/walkthrough.jpg',title:'Edit 01',meta:'',len:'1:24',ar:'16/9'}
+    {cat:'social-reel',src:'media/social-reel.mp4',poster:'media/social-reel.jpg',title:'',meta:'',len:'0:51',ar:'9/16'},
+    {cat:'agent-branding',src:'media/agent-branding.mp4',poster:'media/agent-branding.jpg',title:'',meta:'',len:'0:55',ar:'9/16'},
+    {cat:'agent-branding',src:'media/agent-branding-andrew.mp4',poster:'media/agent-branding-andrew.jpg',title:'',meta:'',len:'0:51',ar:'9/16'},
+    {cat:'agent-branding',src:'media/agent-branding-elysse.mp4',poster:'media/agent-branding-elysse.jpg',title:'',meta:'',len:'0:26',ar:'9/16'},
+    {cat:'agent-branding',src:'media/agent-branding-joan-1.mp4',poster:'media/agent-branding-joan-1.jpg',title:'',meta:'',len:'0:29',ar:'9/16'},
+    {cat:'agent-branding',src:'media/agent-branding-joan-2.mp4',poster:'media/agent-branding-joan-2.jpg',title:'',meta:'',len:'0:47',ar:'9/16'},
+    {cat:'viral-cut',src:'media/viral-cut.mp4',poster:'media/viral-cut.jpg',title:'',meta:'',len:'0:37',ar:'9/16'},
+    {cat:'cinematic-listing',src:'media/cinematic-listing.mp4',poster:'media/cinematic-listing.jpg',title:'',meta:'',len:'0:51',ar:'4/3'},
+    {cat:'walkthrough',src:'media/walkthrough.mp4',poster:'media/walkthrough.jpg',title:'',meta:'',len:'1:24',ar:'16/9'}
   ];
+  window.N4_WORK=WORK;
+  /* New random order on every visit; numbering follows the shown order */
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
   var IG='https://ig.me/m/n4.creatives.re';
   function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   var list=document.getElementById('wkList'), bar=document.getElementById('wkFilter');
   var chips=['<button type="button" class="wk-chip" data-filter="all" aria-pressed="true">All <span>'+WORK.length+'</span></button>'];
   var html=CATS.map(function(c,i){
-    var items=WORK.filter(function(w){return w.cat===c.key});
+    var items=shuffle(WORK.filter(function(w){return w.cat===c.key})).map(function(w,k){var o={};for(var x in w)o[x]=w[x];if(!o.title)o.title='Edit '+String(k+1).padStart(2,'0');return o});
     chips.push('<button type="button" class="wk-chip" data-filter="'+c.key+'" aria-pressed="false">'+esc(c.name)+' <span>'+items.length+'</span></button>');
     var ar=c.o==='v'?'9/16':'16/9';
     var cards=items.map(function(w){
@@ -1282,6 +1289,22 @@ body[data-view="home"] .cta-card{text-align:left}
   </figure>
 </div>
 
+<script>
+/* Home & Packages: show a random edit from the portfolio in each package card */
+(function(){
+  var W=window.N4_WORK||[];
+  [].forEach.call(document.querySelectorAll('.stage[data-video^="media/"]'),function(b){
+    var cur=b.getAttribute('data-video'), cat=cur.replace(/^media\//,'').replace(/\.mp4$/,'');
+    var pool=W.filter(function(w){return w.cat===cat});
+    if(pool.length<2)return;
+    var pick=pool[Math.floor(Math.random()*pool.length)];
+    if(pick.src===cur)return;
+    b.setAttribute('data-video',pick.src);b.setAttribute('data-poster',pick.poster);
+    var v=b.querySelector('video'), so=v&&v.querySelector('source');
+    if(v){v.poster=pick.poster;if(so)so.src=pick.src;else v.setAttribute('data-src',pick.src);v.load()}
+  });
+})();
+</script>
 <script>
 (function(){
   /* Nav: background on scroll, mobile menu */
