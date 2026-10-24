@@ -721,14 +721,23 @@ body[data-view="home"] .cta-card{text-align:left}
 .wk-cat.enter{animation:viewIn .5s cubic-bezier(.2,.7,.2,1) both}
 .wk-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:end;gap:8px clamp(18px,2.4vw,32px)}
 .wk-n{font:800 clamp(44px,5vw,68px)/.8 var(--f-display);background:linear-gradient(180deg,var(--teal-pale),var(--teal-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wk-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
 .wk-head h3{font-size:clamp(30px,3vw,42px)}
+.wk-count{font:400 11.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
 .wk-head p{margin-top:8px;font:400 12px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.wk-ctl{display:flex;align-items:center;gap:10px}
 .wk-head .btn{width:auto;min-height:44px}
-.wk-grid{display:grid;gap:clamp(12px,1.6vw,20px)}
-.wk-grid.v{grid-template-columns:repeat(4,minmax(0,1fr))}
-.wk-grid.h{grid-template-columns:repeat(2,minmax(0,1fr))}
-.wk-card{display:grid;gap:12px;min-width:0;align-content:start}
-.wk-media{position:relative;display:block;width:100%;aspect-ratio:var(--ar,16/9);padding:0;margin:0;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:var(--ink-2);cursor:pointer;transition:border-color .3s,transform .3s}
+.wk-arr{width:44px;height:44px;display:grid;place-items:center;flex:none;padding:0;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--bone);font:400 18px/1 var(--f-body);cursor:pointer;transition:border-color .25s,background .25s,color .25s,opacity .25s}
+.wk-arr:hover:not(:disabled){border-color:var(--bronze);background:var(--bronze);color:var(--ink)}
+.wk-arr:disabled{opacity:.3;cursor:default}
+.wk-cat.fits .wk-arr{display:none}
+/* Each category is a sideways reel: swipe or use the arrows */
+.wk-grid{--h:clamp(360px,34vw,500px);display:flex;align-items:flex-start;gap:clamp(12px,1.4vw,18px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-behavior:smooth;
+  margin-inline:calc(50% - 50vw);padding:6px calc(50vw - 50%) 4px;scroll-padding-inline:calc((100vw - min(var(--max),100vw))/2 + var(--gutter));scrollbar-width:none}
+.wk-grid::-webkit-scrollbar{display:none}
+.wk-grid.h{--h:min(clamp(210px,22vw,320px),52vw)}
+.wk-card{display:grid;gap:12px;flex:none;align-content:start;scroll-snap-align:start}
+.wk-media{position:relative;display:block;height:var(--h);width:auto;aspect-ratio:var(--ar,16/9);padding:0;margin:0;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:var(--ink-2);cursor:pointer;transition:border-color .3s,transform .3s}
 .wk-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .wk-media .tag{position:absolute;z-index:1;font:500 9.5px/1 var(--f-mono);letter-spacing:.12em;color:var(--bone);opacity:.85;text-shadow:0 1px 3px color-mix(in srgb,var(--ink) 80%,transparent)}
 .wk-media .tl{top:10px;left:11px}.wk-media .tr{top:10px;right:11px}
@@ -736,19 +745,16 @@ body[data-view="home"] .cta-card{text-align:left}
 .wk-media:hover,.wk-media:focus-visible{border-color:var(--teal-deep);transform:translateY(-3px)}
 .wk-media:hover .play{transform:translate(-50%,-50%) scale(1.1);background:var(--bronze);border-color:var(--bronze)}
 .wk-media:hover .play::before{background:var(--ink)}
-.wk-media:focus-visible{outline:2px solid var(--bronze-hi);outline-offset:2px}
+.wk-media:focus-visible{outline:2px solid var(--bronze-hi);outline-offset:-2px}
 .wk-cap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;font:400 11.5px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
 .wk-cap strong{font-weight:500;color:var(--bone)}
-.wk-more{display:grid;place-content:center;gap:10px;aspect-ratio:var(--ar,16/9);padding:20px;border:1px dashed var(--line-strong);border-radius:6px;text-align:center;text-decoration:none;color:var(--mute);font:400 12px/1.5 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;transition:border-color .3s,color .3s}
+.wk-more{display:grid;place-content:center;gap:10px;flex:none;height:var(--h);aspect-ratio:var(--ar,16/9);padding:20px;scroll-snap-align:start;border:1px dashed var(--line-strong);border-radius:6px;text-align:center;text-decoration:none;color:var(--mute);font:400 12px/1.5 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;transition:border-color .3s,color .3s}
 .wk-more strong{font:500 12.5px/1.4 var(--f-body);letter-spacing:.14em;color:var(--teal-pale)}
 .wk-more:hover{border-color:var(--teal-deep);color:var(--bone)}
-@media (max-width:1000px){.wk-grid.v{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:760px){
-  .wk-grid.h{grid-template-columns:minmax(0,1fr)}
   .wk-head{grid-template-columns:auto minmax(0,1fr)}
-  .wk-head .btn{grid-column:1/-1;justify-self:start}
+  .wk-ctl{grid-column:1/-1}
 }
-@media (max-width:640px){.wk-grid.v{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 
 <header class="nav" id="nav">
@@ -1002,18 +1008,33 @@ body[data-view="home"] .cta-card{text-align:left}
     cards+='<a class="wk-more" style="--ar:'+esc((items[0]&&items[0].ar)||ar)+'" data-direct href="'+IG+'" target="_blank" rel="noopener"><span>More '+esc(c.name)+' edits</span><strong>Ask for the full reel →</strong></a>';
     return '<section class="wk-cat" data-cat="'+c.key+'" aria-labelledby="wk-'+c.key+'">'+
       '<header class="wk-head"><span class="wk-n" aria-hidden="true">'+String(i+1).padStart(2,'0')+'</span>'+
-      '<div><h3 id="wk-'+c.key+'">'+esc(c.name)+'</h3><p>'+esc(c.line)+' · '+esc(c.fmt)+'</p></div>'+
-      '<a class="btn btn-line" href="#packages">Order this edit <span class="arr">→</span></a></header>'+
+      '<div><div class="wk-title"><h3 id="wk-'+c.key+'">'+esc(c.name)+'</h3><span class="wk-count">'+items.length+(items.length===1?' edit':' edits')+'</span></div><p>'+esc(c.line)+' · '+esc(c.fmt)+'</p></div>'+
+      '<div class="wk-ctl"><button type="button" class="wk-arr" data-dir="-1" aria-label="Previous '+esc(c.name)+' edits">←</button><button type="button" class="wk-arr" data-dir="1" aria-label="Next '+esc(c.name)+' edits">→</button>'+
+      '<a class="btn btn-line" href="#packages">Order this edit <span class="arr">→</span></a></div></header>'+
       '<div class="wk-grid '+c.o+'">'+cards+'</div></section>';
   }).join('');
   list.innerHTML=html; bar.innerHTML=chips.join('');
+  /* Reel arrows: page through each row, dim at the ends */
+  function sync(row){var sec=row.closest('.wk-cat'),b=sec.querySelectorAll('.wk-arr'),max=row.scrollWidth-row.clientWidth-2;
+    b[0].disabled=row.scrollLeft<=2;b[1].disabled=row.scrollLeft>=max;if(row.clientWidth)sec.classList.toggle('fits',max<=2)}
+  [].forEach.call(list.querySelectorAll('.wk-grid'),function(row){
+    row.addEventListener('scroll',function(){sync(row)},{passive:true});sync(row);
+  });
+  var rows=[].slice.call(list.querySelectorAll('.wk-grid'));
+  if('ResizeObserver' in window){var ro=new ResizeObserver(function(es){es.forEach(function(en){sync(en.target)})});rows.forEach(function(r){ro.observe(r)})}
+  else{window.addEventListener('resize',function(){rows.forEach(sync)});window.addEventListener('hashchange',function(){setTimeout(function(){rows.forEach(sync)},50)})}
+  list.addEventListener('click',function(e){
+    var b=e.target.closest('.wk-arr'); if(!b)return;
+    var row=b.closest('.wk-cat').querySelector('.wk-grid');
+    row.scrollBy({left:(+b.getAttribute('data-dir'))*Math.max(240,row.clientWidth*.7),behavior:'smooth'});
+  });
   bar.addEventListener('click',function(e){
     var b=e.target.closest('.wk-chip'); if(!b)return;
     var f=b.getAttribute('data-filter');
     [].forEach.call(bar.querySelectorAll('.wk-chip'),function(x){x.setAttribute('aria-pressed',String(x===b))});
     [].forEach.call(list.querySelectorAll('.wk-cat'),function(sec){
       var on=f==='all'||sec.getAttribute('data-cat')===f; sec.hidden=!on;
-      if(on){sec.classList.remove('enter');void sec.offsetWidth;sec.classList.add('enter')}
+      if(on){sec.classList.remove('enter');void sec.offsetWidth;sec.classList.add('enter');sync(sec.querySelector('.wk-grid'))}
     });
   });
 })();
