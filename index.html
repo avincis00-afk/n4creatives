@@ -63,6 +63,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--bronze-hi);outline-
 .lede{font-size:clamp(16.5px,1.45vw,19px);color:var(--mute);max-width:54ch;line-height:1.7;text-wrap:balance}
 .sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px 64px}
 .sec-head .lede{max-width:44ch}
+.bulk-tag{display:inline-flex;align-items:center;gap:10px;margin:0 0 0 auto;padding:8px 16px 8px 8px;border:1px solid var(--line);border-radius:999px;background:linear-gradient(120deg,color-mix(in srgb,var(--bronze) 9%,transparent),transparent 72%);color:var(--mute);font:500 11px/1 var(--f-body);letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}
+.bulk-tag b{flex:none;padding:7px 11px;border-radius:999px;background:linear-gradient(120deg,var(--bronze-hi),var(--bronze));color:var(--ink);font:700 11.5px/1 var(--f-mono);letter-spacing:.06em}
+@media (max-width:720px){.bulk-tag{margin-left:0}}
 
 /* Lạc bird, recolorable through currentColor */
 .bird{display:block;aspect-ratio:1100/588;background:currentColor;-webkit-mask:var(--bird-sm) center/contain no-repeat;mask:var(--bird-sm) center/contain no-repeat}
@@ -1155,6 +1158,7 @@ window.N4_LQ={"media/agent-branding-andrew.jpg":"data:image/jpeg;base64,/9j/4AAQ
           <p class="eyebrow">Single edits <i>/</i> Per video</p>
           <h2>Pick your cut.</h2>
         </div>
+        <p class="bulk-tag"><b>−15%</b><span>on 10+ videos</span></p>
       </div>
 
       <div class="pkgs">
